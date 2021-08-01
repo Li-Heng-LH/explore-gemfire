@@ -66,6 +66,31 @@
 
 &nbsp;
 
+### Configuring and Running a Cluster ###
+* New members will request configuration from a locator
+* Locator will distribute the configuration to new servers joining the cluster. 
+* The locators store the configurations in a **hidden region** that is available to all locators and 
+also **write the configuration data to disk as XML files**.
+* `start locator --name=locator1`
+* `start server --name=server1 --groups=group1`
+* `start server --name=server2 --groups=group1 --server-port=40405`
+* `start server --name=server3 --server-port=40406`
+* `create region --name=region1 --groups=group1 --type=REPLICATE`
+  * region1 is created on all cache servers that specified the group named group1
+* `create region --name=region2 --type=REPLICATE`
+  * region2 is created on all members because no group was specified.
+* `export cluster-configuration --zip-file-name=myClConfig.zip`
+  * create a zip file that contains the cluster’s persisted configuration.
+* `shutdown --include-locators=true`, and exit gfsh.
+* Now if we navigate to another directory, start gfsh,
+* `start locator --name=locator2 --port=10335`
+* `import cluster-configuration --zip-file-name=myClConfig.zip`
+* `start server --name=server4 --server-port=40414`
+* `start server --name=server5 --groups=group1 --server-port=40415`
+* region1 will be automatically created in server5(group1).
+  region2 will be automatically created in server4 and server5.
+
+&nbsp;
 
 &nbsp;
 ----
