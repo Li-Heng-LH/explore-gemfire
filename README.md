@@ -66,7 +66,7 @@
 
 &nbsp;
 
-### Configuring and Running a Cluster ###
+### cluster configuration service ###
 * New members will request configuration from a locator
 * Locator will distribute the configuration to new servers joining the cluster. 
 * The locators store the configurations in a **hidden region** that is available to all locators and 
@@ -87,8 +87,31 @@ also **write the configuration data to disk as XML files**.
 * `import cluster-configuration --zip-file-name=myClConfig.zip`
 * `start server --name=server4 --server-port=40414`
 * `start server --name=server5 --groups=group1 --server-port=40415`
-* region1 will be automatically created in server5(group1).
+* region1 will be automatically created in server5(group1).  
   region2 will be automatically created in server4 and server5.
+
+&nbsp;
+
+### Topology Types Concepts ###
+* Peer-to-Peer Configuration
+  * simplest topology
+  * building block for all installations
+  * Each cache instance, or member, directly communicates with every other member in the cluster. 
+  * For horizontal scaling
+  * Members discover each other using one or more locators. 
+  * Once they have found each other, members communicate directly
+  * Each system member has a unique identity and knows the identities of the other members.
+* Client/Server Configuration
+  * for vertical scaling
+  * **The server system is itself a peer-to-peer system**
+  * A client system has a connection pool, which it uses to communicate with servers and other members
+  * A client may also contain a local cache.
+  * Locators provide clients with dynamic server discovery and server load balancing.
+  * Clients are configured with locator information for the server system, and turn to the locators for directions to the servers to use.
+  * **The locators that provide peer discovery in the server system also provide server discovery for clients to the server system.**
+* Multi-site Configuration
+  * **Each individual site is a peer-to-peer or Client/Server system**
+  * A cluster uses locators to discover remote GemFire clusters as well as to discover local GemFire members. 
 
 &nbsp;
 
