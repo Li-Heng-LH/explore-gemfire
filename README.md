@@ -142,7 +142,31 @@ also **write the configuration data to disk as XML files**.
 
 &nbsp;
 
+### Cache Management ###
+* Caches can be configured with: 
+  * gfsh
+  * cache.xml 
+  * API calls
+* GemFire has one cache type for managing server and peer caches (org.apache.geode.cache.Cache)
+* GemFire has another cache type for managing client caches (org.apache.geode≈setting_cache_initializer.cache.ClientCache)
+* The Caching APIs
+  * `org.apache.geode.cache.RegionService`
+    * provides access to existing cache data regions and to the standard query service for the cache
+    * client caches send queries to the server tier
+    * For server and peer caches, queries are run in the current cache and any available peers
+  * `org.apache.geode.cache.GemFireCache`
+    * extends `RegionService`
+    * adds general caching features like region attributes, disk stores for region persistence and overflow,
+  * `org.apache.geode.cache.Cache`
+    * to manage server and peer caches
+    * extends `GemFireCache`
+    * **one `Cache` per server or peer process**
+  * `org.apache.geode≈setting_cache_initializer.cache.ClientCache`
+    * to manage the cache in clients
+    * extends `GemFireCache`
+    * **one `ClientCache` per client process**
 
+&nbsp;
 
 &nbsp;
 ----
