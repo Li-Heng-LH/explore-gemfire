@@ -3,7 +3,8 @@
 ## Some Learning Notes ##
 
 ### Main Concepts and Components ###
-* _Cache_: a node
+* _Cache_: a node in a GemFire distributed system, Cluster.
+  * **The nodes can be arranged in peer-to-peer or client/server topologies**.
 * _Regions_: tables. 
   * within each cache
   * name/value pairs
@@ -101,6 +102,7 @@ also **write the configuration data to disk as XML files**.
   * Members discover each other using one or more locators. 
   * Once they have found each other, members communicate directly
   * Each system member has a unique identity and knows the identities of the other members.
+  * Members that define the **same member discovery properties** and belong to the same cluster are peers to one another.
 * Client/Server Configuration
   * for vertical scaling
   * **The server system is itself a peer-to-peer system**
@@ -109,11 +111,38 @@ also **write the configuration data to disk as XML files**.
   * Locators provide clients with dynamic server discovery and server load balancing.
   * Clients are configured with locator information for the server system, and turn to the locators for directions to the servers to use.
   * **The locators that provide peer discovery in the server system also provide server discovery for clients to the server system.**
+  * Need to configure between members of multiple clusters.
+  * Configure some or all of the peers in one cluster to act as cache servers to clients connecting from outside the cluster
+  * Configure the client applications to connect to the servers, using a client cache configuration. 
 * Multi-site Configuration
   * **Each individual site is a peer-to-peer or Client/Server system**
   * A cluster uses locators to discover remote GemFire clusters as well as to discover local GemFire members. 
+  * Need to configure between members of multiple clusters.
 
 &nbsp;
+
+### One summary ### 
+* **Cache / Cluster / Node / Peer-to-peer / Client-server**
+
+&nbsp;
+
+### Configuration Files ###
+* _gemfire.properties_: licensing, system member discovery, communication parameters, logging, and statistics. 
+* _cache.xml_: cache, region, and region entry configuration,   
+  to configure disk stores, database login credentials, server and remote site location information, and socket information
+
+&nbsp;
+
+### Cluster and Cache Configuration ###
+* We can configure members to belong to a single cluster, and can optionally configure them to be clients or servers to members in other clusters,   
+  and to communicate with other clusters.
+* Specify in gemfire.properties to tell members: 
+  * How to find and communicate with other members
+  * Which persistent configuration or cache.xml file to use for cache and data region initialization
+
+&nbsp;
+
+
 
 &nbsp;
 ----
