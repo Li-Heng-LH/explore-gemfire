@@ -43,7 +43,20 @@ Walk through of the course: [Pluralsight: Pivotal GemFire Developer](https://www
 
 &nbsp;
 
+### gfsh ###
+* Need to specify name to start locator. Those in `[]` are optional flags.
+* Locator is a network entity, so it listens to a specific port. Default port is 10334. 
+* Similarly, need to specify name to start server. 
+* The first thing a server does when it starts is to connect to a locator.   
+  **By default, it looks for a locator on that default port**. 
+* Server is also a network entity, so it listens to a specific port also. It has default port also.  
+  If port is set to 0, **locator** will choose port dynamically for server.
+* Similarly, need to specify name to create a region. 
+* Discovery mechanism of members: 
+  * recommend TCP/IP
+  * instead of mcast
 
+&nbsp;
 
 &nbsp;
 ----
