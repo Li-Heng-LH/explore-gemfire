@@ -58,6 +58,32 @@ Walk through of the course: [Pluralsight: Pivotal GemFire Developer](https://www
 
 &nbsp;
 
+### Regions in details ###
+* Replicated Regions
+  * a server will store the complete data set of region 
+  * and replicates entire region to other members
+  * Data sets are contained entirely in every JVM
+  * High speed of data read and write access
+  * Suitable for reference data, or small data that does not change much
+  * Suitable for many-to-many relationships data.
+  * Suitable for look-up table kind of data.
+  * More suitable for read access data.
+  * Suitable for static/reference/lookup data.
+  * Cannot horizontally scale.
+  * More rare case
+* Partitioned Regions
+  * Division of data into **buckets** across cache members
+  * Suitable for very large data sets
+  * provides horizontal scalability
+  * Good for 1-to-many or many-to-1 relationships
+  * Suitable for dynamic data.
+  * There are still ways to support data failover and high availability.
+  * Suitable for data that will keep being written (keep growing)
+  * Suitable for 100's of GB
+  * Most typical case
+
+&nbsp;
+
 &nbsp;
 ----
 ### Useful links ###
