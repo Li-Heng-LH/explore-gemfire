@@ -84,6 +84,18 @@ Walk through of the course: [Pluralsight: Pivotal GemFire Developer](https://www
 
 &nbsp;
 
+### Highly available partitioned region ###
+* `start locator --name=locator1`
+* `start server --name=server1 --server-port=40411 --cache-xml-file=cache.xml`
+* `start server --name=server2 --server-port=40422 --cache-xml-file=cache.xml`
+* `put --region=Customer --key="1" --value="one"`
+* `put --region=Customer --key="2" --value="two"`
+* `stop server --name=server1`
+* `describe region --name=/Customer`
+* `query --query="select * from /Customer"`
+
+&nbsp;
+
 &nbsp;
 ----
 ### Useful links ###
