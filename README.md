@@ -96,6 +96,27 @@ Walk through of the course: [Pluralsight: Pivotal GemFire Developer](https://www
 
 &nbsp;
 
+### Buckets ###
+* Keys are hashed and placed into a bucket. 
+* bucket number = key.hashcode() mod #buckets
+* To achieve good bucket distribution, use prime number of buckets (113 by default)
+* In a partition region, buckets are distributed across different servers. 
+* `redundant-copies="1"`, we will have extra copies of buckets that contain values. 
+* Note diff with Replicated Region: 
+  * Replicated Region: 所有 bucket 在 server 1, 所有 bucket 在 server 2, ...
+  * Replicated Region: server 1 itself has completer set of data. 
+  * Partitioned Region: A complete set of buckets spread across servers. 
+  * If `redundant-copies="1"`, another complete set of buckets spread across servers.
+  * If `redundant-copies="2"`, another complete set of buckets spread across servers.
+* In the case of a server down, 
+  * secondary buckets will be become primary. 
+  * Gemfire will re-establish redundancy. 
+* Number of buckets 20-50 * number of servers
+
+&nbsp;
+
+
+
 &nbsp;
 ----
 ### Useful links ###
