@@ -4,8 +4,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://geode.apache.org/schema/cache http://geode.apache.org/schema/cache/cache-1.0.xsd"
         version="1.0">
+
+    <!-- There is a client component that connects distributed system called connection pool layer -->
     <pool name="client-pool">
         <locator host="localhost" port="10334"/>
     </pool>
+
+    <!-- Telling client pooling layer to fetch Customer region -->
+    <!--  Can omit region attribute pool name. By default get the only existing client pool -->
     <region name="Customer" refid="PROXY"/>
+
 </client-cache>

@@ -115,7 +115,19 @@ Walk through of the course: [Pluralsight: Pivotal GemFire Developer](https://www
 
 &nbsp;
 
+### Client Cache ###
+* clientCache.xml config: 
+  * configure pool
+  * configure region
+* Client Cache can have their own local copy of data. 
+* Client Cache can **register for changes**.   
+  Serer will notify the client as needed when the data changes. 
+* Client Connection Pools
+  * Manage client connections to servers
+  * Can be configured with one or more locators
+  * 
 
+&nbsp;
 
 &nbsp;
 ----
