@@ -125,7 +125,27 @@ Walk through of the course: [Pluralsight: Pivotal GemFire Developer](https://www
 * Client Connection Pools
   * Manage client connections to servers
   * Can be configured with one or more locators
-  * 
+  * The pool will itself choose which server to connect to, based on
+    * availability of region
+    * elasticity 
+    * server load
+* Managing connections
+  * Pool configured with locator(s) can adjust to changing server load. 
+  * each connection maintains internal lifetime counter, 
+  * periodically, connection checks back with locator. 
+* Client Region types: 
+  * `LOCAL`: local region, not distributed. 
+  * `PROXY`: 
+    * Region acts as proxy to server side region by the same name
+    * No data kept locally
+    * ALL operations (get, put), require call to server. 
+  * `CACHING_PROXY`: 
+    * data kept locally, but also forward to server
+    * `get()` will avoid call to server, if key is in the client region
+* Summary:
+  * Details of locating servers hidden behind connection pooling mechanism 
+  * Developer only needs to configure client cache and client side region
+  * PROXY region name MUST match server region name
 
 &nbsp;
 
